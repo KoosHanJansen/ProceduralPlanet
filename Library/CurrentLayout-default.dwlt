@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1037
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_MinSize: {x: 911, y: 442}
   m_MaxSize: {x: 22006, y: 10021}
   vertical: 0
-  controlID: 134
+  controlID: 35
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,8 +224,8 @@ MonoBehaviour:
     y: 0
     width: 368
     height: 987
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -409,13 +409,13 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -5900.6274, y: 6054.3984, z: 5957.147}
+    m_Target: {x: -272.66003, y: 4081.8298, z: 535.3816}
     speed: 2
-    m_Value: {x: -5900.6274, y: 6054.3984, z: 5957.147}
+    m_Value: {x: -272.66003, y: 4081.8298, z: 535.3816}
   m_RenderMode: 0
   m_CameraMode:
-    drawMode: 0
-    name: Shaded
+    drawMode: 1
+    name: Wireframe
     section: Shading Mode
   m_ValidateTrueMetals: 0
   m_DoValidateTrueMetals: 0
@@ -458,9 +458,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.099871784, y: -0.8716485, z: 0.19757676, w: -0.43747118}
+    m_Target: {x: 0.16441935, y: 0.114342846, z: -0.018568754, w: 0.9796543}
     speed: 2
-    m_Value: {x: -0.09986364, y: -0.87157744, z: 0.19756065, w: -0.4374355}
+    m_Value: {x: 0.16587411, y: 0.11430484, z: -0.018738667, w: 0.97932076}
   m_Size:
     m_Target: 59.015316
     speed: 2
@@ -632,9 +632,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 04370000
       m_LastClickedID: 0
-      m_ExpandedIDs: 62fbffff94360000
+      m_ExpandedIDs: 82faffff62fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -696,12 +696,12 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Chunk/Shader
+    - Assets/Scenes
     m_Globs: []
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts/Chunk/Shader
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\UnityProjects\Planet
   m_LockTracker:
@@ -710,7 +710,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: f6360000
     m_LastClickedID: 14070
-    m_ExpandedIDs: 00000000e4360000e6360000e8360000ea36000000ca9a3b
+    m_ExpandedIDs: 00000000ea360000ec360000ee360000f036000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -738,7 +738,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e4360000e6360000e8360000ea360000
+    m_ExpandedIDs: 00000000ea360000ec360000ee360000f0360000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -765,7 +765,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: d236000000000000d42d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
