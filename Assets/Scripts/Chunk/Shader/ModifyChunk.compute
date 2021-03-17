@@ -1,0 +1,64 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel ModifyChunk
+
+#include "Assets\Scripts\Chunk\Shader\NoiseInclude.compute"
+
+RWStructuredBuffer<float3> Vertices;
+RWStructuredBuffer<float3> Normals;
+float3 origin;
+
+float4x4 localToWorldMatrix;
+float4x4 worldToLocalMatrix;
+
+float planetSize;
+float scale;
+float lacunarity;
+float persistance;
+float maxTerrainHeight;
+
+uint octaves;
+uint seed;
+
+[numthreads(1,1,1)]
+void ModifyChunk(uint3 id : SV_DispatchThreadID)
+{
+	//Index of current thread
+	uint index = id.x + id.y * 33;
+	
+	//Convert Vertices[index] to float4 so can be modified by matrix
+	float4 vertex = float4(Vertices[index], 1);
+	float4 worldPos = mul(localToWorldMatrix, vertex);
+	
+	//Set Vertices[x] on the radius of the planet (pls work)
+	float distance = 1.0 / sqrt((worldPos.x * worldPos.x) + (worldPos.y * worldPos.y) + (worldPos.z * worldPos.z));
+	Normals[index] = float3(worldPos.x * distance, worldPos.y * distance, worldPos.z * distance);
+	worldPos = float4(Normals[index].x * planetSize, Normals[index].y * planetSize, Normals[index].z * planetSize, worldPos.w);
+	
+	//Noise shit
+	float frequency = 1;
+	float amplitude = 1;
+	float noiseHeight = 0;
+	float maxNoise = 0;
+	
+	[loop] //All octaves
+	for (uint o = 0; o < octaves; o++)
+	{
+		float nx = (worldPos.x / scale) * frequency;
+		float ny = (worldPos.y / scale) * frequency;
+		float nz = (worldPos.z / scale) * frequency;
+		
+		noiseHeight += snoise(float3(nx + seed, ny + seed, nz + seed)) * amplitude;
+		maxNoise += amplitude;
+
+		amplitude *= persistance;
+		frequency *= lacunarity;
+	}
+	
+	//Get the noise between 0 and 1 for ease of use
+	float noise = noiseHeight / maxNoise;
+	float powNoise = pow(noise, 2);
+	
+	//Add the noise to the y axis of the vertice and multiply it by the elevation
+	worldPos.xyz += Normals[index] * powNoise * maxTerrainHeight;
+	Vertices[index] = mul(worldToLocalMatrix, worldPos).xyz;
+}
