@@ -18,6 +18,7 @@ MonoBehaviour:
   lacunarity: 2
   persistance: 0.5
   maxHeight: 150
+  gravity: -10
   octaves: 10
   seed: 0
   origin: {x: 0, y: 0, z: 0}

@@ -20,11 +20,11 @@ public class QuadTree
 
     private float[] LOD_DIST =
     {
-        32,                 //0
-        64,                 //1
-        128,                //2
-        256,                //3
-        512,                //4
+        64,                 //0
+        128,                 //1
+        256,                //2
+        512,                //3
+        768,                //4
         1024,               //5
         2048,               //6
         4196,               //7
@@ -70,8 +70,8 @@ public class QuadTree
 
     public float DistanceToTarget()
     {
-        //return Vector3.Distance(_Chunk.GetComponent<MeshRenderer>().bounds.center, _Target.transform.position);
-        return Vector3.Distance(_Chunk.GetComponent<MeshRenderer>().bounds.center, UnityEditor.SceneView.lastActiveSceneView.camera.transform.position);//
+        return Vector3.Distance(_Chunk.GetComponent<MeshRenderer>().bounds.center, _PlanetData.target.transform.position);//Check distance to target object
+        //return Vector3.Distance(_Chunk.GetComponent<MeshRenderer>().bounds.center, UnityEditor.SceneView.lastActiveSceneView.camera.transform.position);//Check distance to scene camera (testing)
     }
 
     public void Subdivide()
@@ -131,6 +131,7 @@ public class QuadTree
         _Chunk = GameObject.Instantiate(ChunkBuilder.GetChunkLOD(this._Lod));
         _Chunk.SetActive(true);
         _Chunk.transform.parent = this._Parent;
+        _Chunk.isStatic = true;
 
         _Chunk.transform.localPosition = _LocalPosition;
         _Chunk.transform.localRotation = Quaternion.identity;

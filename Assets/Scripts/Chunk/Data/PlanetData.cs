@@ -11,6 +11,7 @@ public class PlanetData : ScriptableObject
     public float lacunarity = 2;
     public float persistance = 0.5f;
     public float maxHeight = 150;
+    public float gravity = -10;
 
     public int octaves = 10;
     public int seed = 0;

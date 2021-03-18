@@ -55,9 +55,11 @@
     <Compile Include="Assets\Scripts\Chunk\LOD\QuadTree.cs" />
     <Compile Include="Assets\Scripts\Chunk\ChunkBuilder.cs" />
     <Compile Include="Assets\Scripts\Chunk\LOD\SphereTree.cs" />
-    <Compile Include="Assets\Planet.cs" />
-    <Compile Include="Assets\Scripts\Chunk\MeshBuilder.cs" />
     <Compile Include="Assets\Scripts\Chunk\Data\PlanetData.cs" />
+    <Compile Include="Assets\Scripts\Planet\Planet.cs" />
+    <Compile Include="Assets\Scripts\Chunk\MeshBuilder.cs" />
+    <Compile Include="Assets\Scripts\Entities\Player\cameraController.cs" />
+    <Compile Include="Assets\Scripts\Entities\Player\SimpleMovement.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Chunk\Shader\NoiseInclude.compute" />
