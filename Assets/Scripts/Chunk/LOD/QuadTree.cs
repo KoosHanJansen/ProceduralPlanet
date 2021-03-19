@@ -20,7 +20,7 @@ public class QuadTree
     private float[] LOD_DIST =
     {
         64,                 //0
-        128,                 //1
+        128,                //1
         256,                //2
         512,                //3
         768,                //4

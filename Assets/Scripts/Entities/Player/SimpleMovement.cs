@@ -13,7 +13,7 @@ public class SimpleMovement : MonoBehaviour
 
     public bool OnGround()
     {
-        return Physics.Raycast(transform.position, -transform.up, distanceToGround + 0.5f);
+        return Physics.Raycast(transform.position, -transform.up, distanceToGround + 0.6f);
     }
     
     void Start()

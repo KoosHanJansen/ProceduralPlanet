@@ -30,8 +30,8 @@ void ModifyChunk(uint3 id : SV_DispatchThreadID)
 	
 	//Set Vertices[x] on the radius of the planet (pls work)
 	float distance = 1.0 / sqrt((worldPos.x * worldPos.x) + (worldPos.y * worldPos.y) + (worldPos.z * worldPos.z));
-	float3 normal = float3(worldPos.x * distance, worldPos.y * distance, worldPos.z * distance);
-	worldPos = float4(normal.x * planetSize, normal.y * planetSize, normal.z * planetSize, worldPos.w);
+	float3 normal = worldPos.xyz * distance;
+	worldPos.xyz = normal * planetSize;
 	
 	//Noise shit
 	float frequency = 1;
@@ -42,11 +42,10 @@ void ModifyChunk(uint3 id : SV_DispatchThreadID)
 	[loop] //All octaves
 	for (uint o = 0; o < octaves; o++)
 	{
-		float nx = (worldPos.x / scale) * frequency;
-		float ny = (worldPos.y / scale) * frequency;
-		float nz = (worldPos.z / scale) * frequency;
+		float3 noisePos = (worldPos.xyz / scale) * frequency;
+		noisePos.xyz += seed;
 		
-		noiseHeight += snoise(float3(nx + seed, ny + seed, nz + seed)) * amplitude;
+		noiseHeight += snoise(noisePos) * amplitude;
 		maxNoise += amplitude;
 
 		amplitude *= persistance;
