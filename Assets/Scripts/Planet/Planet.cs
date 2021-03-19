@@ -8,8 +8,7 @@ public class Planet : MonoBehaviour
     public Transform target;
 
     public PlanetData planetData;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         if (planetData != null)
@@ -18,12 +17,10 @@ public class Planet : MonoBehaviour
             planetData.target = this.target;
         }
             
-
         _SphereTree = new SphereTree(this.transform, this.planetData);
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    void LateUpdate()
     {
         _SphereTree.Update();
         AttractRigidbodies();
@@ -40,7 +37,7 @@ public class Planet : MonoBehaviour
             Rigidbodies[i].AddForce(gravityUp * planetData.gravity);
 
             Quaternion targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * Rigidbodies[i].transform.rotation;
-            Rigidbodies[i].transform.rotation = Quaternion.Slerp(Rigidbodies[i].transform.rotation, targetRotation, 50 );
+            Rigidbodies[i].transform.rotation = Quaternion.Slerp(Rigidbodies[i].transform.rotation, targetRotation, 1);
         }
     }
 }

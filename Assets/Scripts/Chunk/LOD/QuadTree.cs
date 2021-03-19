@@ -9,7 +9,6 @@ public class QuadTree
     private QuadTree[] _Branches;
     
     private ComputeBuffer _VerticeBuffer;
-    private ComputeBuffer _NormalBuffer;
 
     private PlanetData _PlanetData;
 
@@ -155,17 +154,13 @@ public class QuadTree
 
         Mesh newMesh = mesh;
         Vector3[] verts = mesh.vertices;
-        Vector3[] normals = mesh.normals;
 
         int kernel = _PlanetData.computeMesh.FindKernel("ModifyChunk");
 
         _VerticeBuffer = new ComputeBuffer(verts.Length, sizeof(float) * 3);
-        _NormalBuffer = new ComputeBuffer(normals.Length, sizeof(float) * 3);
         _VerticeBuffer.SetData(mesh.vertices);
-        _NormalBuffer.SetData(mesh.normals);
 
         _PlanetData.computeMesh.SetBuffer(kernel, "Vertices", _VerticeBuffer);
-        _PlanetData.computeMesh.SetBuffer(kernel, "Normals", _NormalBuffer);
 
         _PlanetData.computeMesh.SetMatrix("localToWorldMatrix", _Chunk.transform.localToWorldMatrix);
         _PlanetData.computeMesh.SetMatrix("worldToLocalMatrix", _Chunk.transform.worldToLocalMatrix);
@@ -184,24 +179,19 @@ public class QuadTree
         _PlanetData.computeMesh.Dispatch(kernel, ChunkBuilder.CHUNK_SIZE, ChunkBuilder.CHUNK_SIZE, 1);
 
         _VerticeBuffer.GetData(verts);
-        _NormalBuffer.GetData(normals);
 
         newMesh.vertices = verts;
-        newMesh.normals = normals;
 
         newMesh.RecalculateBounds();
         newMesh.RecalculateNormals();
 
         _VerticeBuffer.Dispose();
-        _NormalBuffer.Dispose();
 
         return newMesh;
     }
 
     public void UnloadBranches()
     {
-       
-
         if (_Branches != null)
         {
             for (int i = 0; i < _Branches.Length; i++)

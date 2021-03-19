@@ -4,7 +4,6 @@
 #include "Assets\Scripts\Chunk\Shader\NoiseInclude.compute"
 
 RWStructuredBuffer<float3> Vertices;
-RWStructuredBuffer<float3> Normals;
 float3 origin;
 
 float4x4 localToWorldMatrix;
@@ -31,8 +30,8 @@ void ModifyChunk(uint3 id : SV_DispatchThreadID)
 	
 	//Set Vertices[x] on the radius of the planet (pls work)
 	float distance = 1.0 / sqrt((worldPos.x * worldPos.x) + (worldPos.y * worldPos.y) + (worldPos.z * worldPos.z));
-	Normals[index] = float3(worldPos.x * distance, worldPos.y * distance, worldPos.z * distance);
-	worldPos = float4(Normals[index].x * planetSize, Normals[index].y * planetSize, Normals[index].z * planetSize, worldPos.w);
+	float3 normal = float3(worldPos.x * distance, worldPos.y * distance, worldPos.z * distance);
+	worldPos = float4(normal.x * planetSize, normal.y * planetSize, normal.z * planetSize, worldPos.w);
 	
 	//Noise shit
 	float frequency = 1;
@@ -59,6 +58,6 @@ void ModifyChunk(uint3 id : SV_DispatchThreadID)
 	float powNoise = pow(noise, 2);
 	
 	//Add the noise to the y axis of the vertice and multiply it by the elevation
-	worldPos.xyz += Normals[index] * powNoise * maxTerrainHeight;
+	worldPos.xyz += normal * powNoise * maxTerrainHeight;
 	Vertices[index] = mul(worldToLocalMatrix, worldPos).xyz;
 }
