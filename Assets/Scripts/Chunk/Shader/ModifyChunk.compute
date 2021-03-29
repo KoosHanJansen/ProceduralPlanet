@@ -18,27 +18,28 @@ float maxTerrainHeight;
 uint octaves;
 uint seed;
 
-[numthreads(1,1,1)]
+[numthreads(1, 1, 1)]
 void ModifyChunk(uint3 id : SV_DispatchThreadID)
 {
 	//Index of current thread
 	uint index = id.x + id.y * 33;
+	
+	//float3 offset = float3(-1, 0, 1);
 	
 	//Convert Vertices[index] to float4 so can be modified by matrix
 	float4 vertex = float4(Vertices[index], 1);
 	float4 worldPos = mul(localToWorldMatrix, vertex);
 	
 	//Set Vertices[x] on the radius of the planet (pls work)
-	float distance = 1.0 / sqrt((worldPos.x * worldPos.x) + (worldPos.y * worldPos.y) + (worldPos.z * worldPos.z));
-	float3 normal = worldPos.xyz * distance;
+	float3 normal = normalize(worldPos.xyz);
 	worldPos.xyz = normal * planetSize;
-	
+		
 	//Noise shit
 	float frequency = 1;
 	float amplitude = 1;
 	float noiseHeight = 0;
 	float maxNoise = 0;
-	
+		
 	[loop] //All octaves
 	for (uint o = 0; o < octaves; o++)
 	{
@@ -58,5 +59,6 @@ void ModifyChunk(uint3 id : SV_DispatchThreadID)
 	
 	//Add the noise to the y axis of the vertice and multiply it by the elevation
 	worldPos.xyz += normal * powNoise * maxTerrainHeight;
+		
 	Vertices[index] = mul(worldToLocalMatrix, worldPos).xyz;
 }

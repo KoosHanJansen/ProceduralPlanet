@@ -52,20 +52,23 @@
     <UnityVersion>2020.1.3f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Entities\Player\SimpleMovement.cs" />
     <Compile Include="Assets\Scripts\Chunk\LOD\QuadTree.cs" />
     <Compile Include="Assets\Scripts\Chunk\ChunkBuilder.cs" />
     <Compile Include="Assets\Scripts\Chunk\LOD\SphereTree.cs" />
+    <Compile Include="Assets\PPAtmosphere.cs" />
     <Compile Include="Assets\Scripts\Chunk\Data\PlanetData.cs" />
     <Compile Include="Assets\Scripts\Planet\Planet.cs" />
     <Compile Include="Assets\Scripts\Chunk\MeshBuilder.cs" />
     <Compile Include="Assets\Scripts\Entities\Player\cameraController.cs" />
-    <Compile Include="Assets\Scripts\Entities\Player\SimpleMovement.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Chunk\Shader\NoiseInclude.compute" />
+     <None Include="Assets\Scripts\Shader\Include\Math.cginc" />
      <None Include="Assets\Scripts\Chunk\Shader\ChunkVertexShader.shader" />
      <None Include="Assets\Scripts\Chunk\Shader\ModifyChunk.compute" />
      <None Include="Assets\Scripts\Chunk\Shader\noiseSimplex.cginc" />
+     <None Include="Assets\Scripts\Shader\Planet\Atmosphere.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.3f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

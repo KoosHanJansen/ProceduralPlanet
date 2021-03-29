@@ -11,9 +11,6 @@
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
-
 		CGPROGRAM
 		#pragma surface surf Standard fullforwardshadows vertex:vert
 		#pragma target 4.6

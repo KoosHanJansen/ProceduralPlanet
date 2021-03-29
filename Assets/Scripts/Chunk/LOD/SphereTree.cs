@@ -24,26 +24,26 @@ public class SphereTree
     {
         this._Parents = new Transform[6];
         
-        float halfSize = ChunkBuilder.MAX_SIZE / 2;
+        float radius = this._PlanetData.planetSize;
 
         //Top
         GameObject go = new GameObject("Top");
-        ParentSettings(go, 0, new Vector3(_Position.x, _Position.y + halfSize, _Position.z), new Vector3(0, 0, 0));
+        ParentSettings(go, 0, new Vector3(_Position.x, _Position.y + radius, _Position.z), new Vector3(0, 0, 0));
         //Left
         go = new GameObject("Left");
-        ParentSettings(go, 1, new Vector3(_Position.x - halfSize, _Position.y, _Position.z), new Vector3(0, 0, 90));
+        ParentSettings(go, 1, new Vector3(_Position.x - radius, _Position.y, _Position.z), new Vector3(0, 0, 90));
         //Right
         go = new GameObject("Right");
-        ParentSettings(go, 2, new Vector3(_Position.x + halfSize, _Position.y, _Position.z), new Vector3(0, 0, 270));
+        ParentSettings(go, 2, new Vector3(_Position.x + radius, _Position.y, _Position.z), new Vector3(0, 0, 270));
         //Front
         go = new GameObject("Front");
-        ParentSettings(go, 3, new Vector3(_Position.x, _Position.y, _Position.z - halfSize), new Vector3(270, 0, 0));
+        ParentSettings(go, 3, new Vector3(_Position.x, _Position.y, _Position.z - radius), new Vector3(270, 0, 0));
         //Back
         go = new GameObject("Back");
-        ParentSettings(go, 4, new Vector3(_Position.x, _Position.y, _Position.z + halfSize), new Vector3(90, 0, 0));
+        ParentSettings(go, 4, new Vector3(_Position.x, _Position.y, _Position.z + radius), new Vector3(90, 0, 0));
         //Bottom
         go = new GameObject("Bottom");
-        ParentSettings(go, 5, new Vector3(_Position.x, _Position.y - halfSize, _Position.z), new Vector3(0, 0, 180));
+        ParentSettings(go, 5, new Vector3(_Position.x, _Position.y - radius, _Position.z), new Vector3(0, 0, 180));
 
     }
 
